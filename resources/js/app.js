@@ -1,9 +1,15 @@
 import './bootstrap';
 
 
-import { createApp, h } from 'vue'
+import { createApp, h } from 'vue';
+
+import { ZiggyVue } from 'ziggy';
+import { Ziggy } from './ziggy';
+
 import { createInertiaApp } from '@inertiajs/vue3'
 import MainLayout from "./Layouts/MainLayout.vue"
+
+
 
 createInertiaApp({
   resolve: name => {
@@ -21,6 +27,7 @@ createInertiaApp({
   setup({ el, App, props, plugin }) {
     createApp({ render: () => h(App, props) })
       .use(plugin)
+      .use(ZiggyVue, Ziggy)
       .mount(el)
   },
 })

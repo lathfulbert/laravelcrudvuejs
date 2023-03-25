@@ -18,6 +18,6 @@ Route::get('/', function () {
 })->name("home");
 
 
-Route::get('/test2', function () {
-    return inertia('Test2')->name("contact");
-});
+Route::get('/contact', function () {
+    return inertia('Test2');
+})->name("contact");
