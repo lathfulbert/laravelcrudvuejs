@@ -7,14 +7,8 @@ use Illuminate\Http\Request;
 class NiveauScolaireController extends Controller
 {
    
-
-    public function __construct()
-    {
-        
-    }
-
     public function index(){
-        return inertia("Etudiant/Index");
+        return inertia("NiveauScolaire/Index");
     }
 
   

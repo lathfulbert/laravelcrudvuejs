@@ -14,7 +14,5 @@ class EtudiantController extends Controller
         return inertia("Etudiant/Create");
     }
 
-    public function niveau(){
-        return inertia("NiveauScolaire/Index");
-    }
+    
 }
