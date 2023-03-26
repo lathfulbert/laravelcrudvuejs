@@ -48,22 +48,55 @@
 
 
             <li class="nav-item">
-                <Link :href="route('home')" class="nav-link">
+                <Link :href="route('home')" class="nav-link" :class="{ 'active' : $page.component == 'Home'}">
                     <i class="nav-icon fas fa-th"></i>
                     <p>
                     Home
                     </p>
                 </Link>
             </li>
-         
+
+
+            
+
+            
             <li class="nav-item">
-                <Link :href="route('contact')" class="nav-link">
+                <Link :href="route('niveauscolaire.index')" 
+                class="nav-link" :class="{ 'active' : $page.component == 'NiveauScolaire/Index'}">
                     <i class="nav-icon fas fa-th"></i>
                     <p>
-                       Contact
+                        Liste Niveaux Scolaire
                     </p>
                 </Link>
             </li>
+
+         
+
+            <li class="nav-item"  :class="{ 'menu-open' : $page.component.startsWith('Etudiant/')}">
+                <a href="#" class="nav-link" :class="{ 'active' : $page.component.startsWith('Etudiant/')}">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+             Etudiant
+                <i class="right fas fa-angle-left"></i>
+                </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <Link :href="route('etudiant.index')" class="nav-link" :class="{ 'active' : $page.component == 'Etudiant/Index'}">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Liste Etudiants</p>
+                        </Link>
+                    </li>
+                    <li class="nav-item">
+                        <Link :href="route('etudiant.create')" class="nav-link" :class="{ 'active' : $page.component == 'Etudiant/Create'}">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Nouveau</p>
+                        </Link>
+                    </li>
+                </ul>
+            </li>
+         
+           
         </ul>
     </nav>
 

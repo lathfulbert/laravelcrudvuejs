@@ -17,7 +17,7 @@ createInertiaApp({
     const pages = import.meta.glob('./Pages/**/*.vue', { eager: true })
 
     let page = pages[`./Pages/${name}.vue`]
-    //page.layout ?? = MainLayout
+    //page.layout ??= MainLayout
     page.default.layout = page.default.layout || MainLayout
     return page
 
@@ -28,6 +28,7 @@ createInertiaApp({
     createApp({ render: () => h(App, props) })
       .use(plugin)
       .use(ZiggyVue, Ziggy)
+      .mixin({ methods: { route }})//methode qui permet de rente ziggy @route disponible dans tous les composant vuejs
       .mount(el)
   },
 })
