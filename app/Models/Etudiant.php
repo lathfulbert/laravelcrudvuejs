@@ -13,7 +13,7 @@ class Etudiant extends Model
 
     public function niveau_scolaire(){
 
-        return $this->belongTo(NiveauScolaire::class);
+        return $this->belongsTo(NiveauScolaire::class);
 
     }
 }
