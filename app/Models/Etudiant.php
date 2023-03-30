@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Etudiant extends Model
 {
     use HasFactory;
+
+    protected $fillable =  ["nom", "prenom", "sexe", "age", "niveau_scolaire_id"];
+
+    public function niveau_scolaire(){
+
+        return $this->belongTo(NiveauScolaire::class);
+
+    }
 }
