@@ -28,7 +28,7 @@ createInertiaApp({
     createApp({ render: () => h(App, props) })
       .use(plugin)
       .use(ZiggyVue, Ziggy)
-      .mixin({ methods: { route }})//methode qui permet de rente ziggy @route disponible dans tous les composant vuejs
+      .mixin({ methods: { route }})//methode qui permet de rendre ziggy @route disponible dans tous les composant vuejs
       .mount(el)
   },
 })
