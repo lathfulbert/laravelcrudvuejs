@@ -10,7 +10,7 @@ class NiveauScolaireController extends Controller
    
     public function index(){
 
-        $niveauScolaires = NiveauScolaire::orderBy('nom','ASC')->get();
+        $niveauScolaires = NiveauScolaire::orderBy('nom','ASC')->paginate(2);
 
        // dd($niveauScolaires);
           

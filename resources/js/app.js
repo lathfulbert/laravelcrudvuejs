@@ -6,7 +6,7 @@ import { createApp, h } from 'vue';
 import { ZiggyVue } from 'ziggy';
 import { Ziggy } from './ziggy';
 
-import { createInertiaApp } from '@inertiajs/vue3'
+import { createInertiaApp, Link } from '@inertiajs/vue3'
 import MainLayout from "./Layouts/MainLayout.vue"
 
 
@@ -28,6 +28,7 @@ createInertiaApp({
     createApp({ render: () => h(App, props) })
       .use(plugin)
       .use(ZiggyVue, Ziggy)
+      .component("Link", Link)//Charge le composant Link sur toutes les pages
       .mixin({ methods: { route }})//methode qui permet de rendre ziggy @route disponible dans tous les composant vuejs
       .mount(el)
   },
