@@ -14,7 +14,7 @@ class NiveauScolaireController extends Controller
 
        // dd($niveauScolaires);
           
-return inertia("NiveauScolaire/Index", ["niveauScolaires" => $niveauScolaires]);
+return inertia("NiveauScolaire/IndexNiveauScolaire", ["niveauScolaires" => $niveauScolaires]);
 
     }
 
