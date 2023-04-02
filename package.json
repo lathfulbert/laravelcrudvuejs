@@ -16,6 +16,8 @@
         "@vitejs/plugin-vue": "^4.1.0",
         "admin-lte": "3.2",
         "npm-watch": "^0.11.0",
-        "vue": "^3.2.36"
+        "sweetalert2": "^11.7.3",
+        "vue": "^3.2.36",
+        "vue-sweetalert2": "^5.0.5"
     }
 }

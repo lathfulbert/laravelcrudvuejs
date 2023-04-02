@@ -9,11 +9,16 @@ window.axios = axios;
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
-//window.$ = window.jQuery = require("admin-lte/plugins/jquery/jquery")
-//import "admin-lte/plugins/jquery/jquery"
-import $ from 'jQuery' //import jQuery 
+//window.$ = window.jQuery = require("admin-lte/plugins/jquery/jquery") //require non reconnu
+//import "admin-lte/plugins/jquery/jquery"  //Vuejs Ne reconnait pas $ de Jquery
+
+import $ from 'jQuery' //import jQuery depuis nodeJS
 window.$ = $
 
+
+
+import VueSweetalert2 from 'sweetalert2'
+window.Swal = VueSweetalert2
 
 import "admin-lte/plugins/bootstrap/js/bootstrap.bundle"
 

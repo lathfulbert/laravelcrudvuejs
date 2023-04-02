@@ -23,3 +23,4 @@ Route::get('/etudiant/create',[EtudiantController::class,"create"])->name("etudi
 
 Route::get('/niveauscolaire',[NiveauScolaireController::class,"index"])->name("niveauscolaire.index");
 
+Route::post('/niveauscolaire', [NiveauScolaireController::class, "store"])->name("niveauscolaire.store");

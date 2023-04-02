@@ -28,11 +28,29 @@
               </button>
             </div>
             <div class="modal-body">
-              <p>One fine body…</p>
+              <div class="card card-primary">
+              
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form @submit.prevent="soumettre" id="createForm">
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="nom">nom</label>
+                    <input type="text" required v-model="nomNiveau" class="form-control" id="nom" placeholder="Entrer un titre">
+                  </div>
+            <h1> {{ nomNiveau }}</h1>  
+                  
+                </div>
+                <!-- /.card-body -->
+
+               
+              </form>
+            </div>
+
             </div>
             <div class="modal-footer justify-content-between">
               <button type="button" class="btn btn-danger" @click="closeModal">Close</button>
-              <button type="button" class="btn btn-success">Save </button>
+              <button type="submit" form="createForm" class="btn btn-success">Save </button>
             </div>
           </div>
           <!-- /.modal-content -->
@@ -46,10 +64,59 @@
 
 
 <script setup>
+import { onMounted, ref } from 'vue';
+
+import { router } from '@inertiajs/vue3';
+import { useSwalSuccess, useSwalError } from '../../Composables/alert';
+
+
+const nomNiveau = ref("")
+
+let createNiveauModal =""
+
+onMounted(() =>{
+
+    createNiveauModal = $("#createNiveauModal")
+}
+
+)
 
 const closeModal = ()=>{
 
-    $("#createNiveauModal").modal("hide")
+    createNiveauModal.modal("hide")
+    nomNiveau.value= ""
+}
+
+
+const soumettre = ()=>{
+
+   const nom = nomNiveau.value
+
+   const url = route("niveauscolaire.store")
+
+   router.post(
+    url, 
+   {nom},
+   {
+    onSuccess: (page) =>{
+        closeModal()
+
+        useSwalSuccess('Ajouté avec succès')
+
+
+    },
+
+   
+    onError: (errors) =>{
+        closeModal()
+
+        useSwalError('Une erreur c\'est produite')
+    }
+   }
+   
+   )
+
+
 }
 
 </script>

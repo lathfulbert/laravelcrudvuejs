@@ -7,15 +7,32 @@ use Illuminate\Http\Request;
 
 class NiveauScolaireController extends Controller
 {
-   
+
+    protected $niveau; //Le modèle User est stocké dans la propriété protégée $user
+
+    public function __construct(NiveauScolaire $niveau) // injection de dépendance
+    {
+        $this->niveau = $niveau;
+    }
+    
+    
     public function index(){
 
-        $niveauScolaires = NiveauScolaire::orderBy('nom','ASC')->paginate(2);
+        //  $niveauScolaires = NiveauScolaire::orderBy('nom','ASC')->paginate(2);
+        $niveauScolaires = NiveauScolaire::latest()->paginate(5);
 
        // dd($niveauScolaires);
           
 return inertia("NiveauScolaire/IndexNiveauScolaire", ["niveauScolaires" => $niveauScolaires]);
 
+    }
+
+
+
+    public function store(Request $request) //crée un nouvel utilisateur
+    {
+        $this->niveau->create($request->all());
+        return redirect()->back();
     }
 
   
