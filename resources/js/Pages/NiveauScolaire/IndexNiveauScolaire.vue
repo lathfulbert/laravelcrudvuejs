@@ -18,7 +18,7 @@
                    <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Simple Full Width Table</h3>
+                <h3 class="card-title"><CreateNiveauScolaire/></h3>
 
                 <div class="card-tools">
               <Pagination
@@ -73,6 +73,7 @@
 
 <script setup>
 import Pagination from '../../Shared/Pagination.vue';
+import CreateNiveauScolaire from './CreateNiveauScolaire.vue';
 
   const props = defineProps({
     niveauScolaires: Object
