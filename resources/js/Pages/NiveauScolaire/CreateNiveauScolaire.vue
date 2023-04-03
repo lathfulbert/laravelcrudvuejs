@@ -36,9 +36,11 @@
                 <div class="card-body">
                   <div class="form-group">
                     <label for="nom">nom</label>
-                    <input type="text" required v-model="nomNiveau" class="form-control" id="nom" placeholder="Entrer un titre">
+                    <input type="text" required v-model="nomNiveau" class="form-control" :class="{'is-invalid' : nomError != ''}" id="nom" placeholder="Entrer un titre">
                   </div>
-            <h1> {{ nomNiveau }}</h1>  
+
+                  <span v-if="nomError!=null"> {{ nomError }}</span>
+
                   
                 </div>
                 <!-- /.card-body -->
@@ -64,13 +66,16 @@
 
 
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, ref ,reactive } from 'vue';
 
 import { router } from '@inertiajs/vue3';
 import { useSwalSuccess, useSwalError } from '../../Composables/alert';
 
 
-const nomNiveau = ref("")
+const nomNiveau = ref("");
+
+const nomError = ref("")
+
 
 let createNiveauModal =""
 
@@ -85,6 +90,7 @@ const closeModal = ()=>{
 
     createNiveauModal.modal("hide")
     nomNiveau.value= ""
+    nomError.value =""
 }
 
 
@@ -108,9 +114,14 @@ const soumettre = ()=>{
 
    
     onError: (errors) =>{
-        closeModal()
+       // closeModal()
 
-        useSwalError('Une erreur c\'est produite')
+       if(errors.nom != null){
+        nomError.value =errors.nom
+       }
+        
+
+       // useSwalError('Une erreur c\'est produite')
     }
    }
    

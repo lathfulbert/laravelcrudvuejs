@@ -31,7 +31,14 @@ return inertia("NiveauScolaire/IndexNiveauScolaire", ["niveauScolaires" => $nive
 
     public function store(Request $request) //crée un nouvel utilisateur
     {
-        $this->niveau->create($request->all());
+        //$this->niveau->create($request->all());
+
+        $request->validate([
+            "nom" => "required|unique:App\Models\NiveauScolaire"
+        ]);
+
+        NiveauScolaire::create(["nom" => $request->nom]);
+        
         return redirect()->back();
     }
 
