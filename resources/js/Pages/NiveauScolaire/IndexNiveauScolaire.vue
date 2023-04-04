@@ -48,7 +48,7 @@
                          <td>{{niveauScolaire.nom}}</td>
                       <td>
                         <div class="d-flex"> 
-                             <button class="btn btn-info btn-sm me-3"><i class="fa fa-pencil-alt"></i></button>
+                             <button @click="_$event=>openEditModal(niveauScolaire.id)" class="btn btn-info btn-sm me-3"><i class="fa fa-pencil-alt"></i></button>
                           <button class="btn btn-danger btn-sm me-3"><i class="fa fa-trash-alt"></i></button></div>
                       
                     </td>
@@ -68,16 +68,59 @@
             </div>
 
         </MainLyaout> 
+        
+        <EditNiveauScolaire
+
+         :niveau-scolaire-id="editingElementId"
+
+         :show="showModal"
+
+         @modal-closed="modalClosed"
+         
+        />
 
 </template>
 
 <script setup>
+
 import Pagination from '../../Shared/Pagination.vue';
+
 import CreateNiveauScolaire from './CreateNiveauScolaire.vue';
 
+import EditNiveauScolaire from './EditNiveauScolaire.vue';
+
+import {ref} from "vue";
+
+ const editingElementId = ref(0)
+
+ const showModal = ref(false)
+
+
+
   const props = defineProps({
+
     niveauScolaires: Object
+
   })
+
+
+   const modalClosed = ()=>{
+
+    editingElementId.value = 0
+
+    showModal.value = false
+
+  }
+
+
+
+  const openEditModal = (id)=>{
+
+    editingElementId.value = id
+
+    showModal.value = true
+
+  }
 </script>
 
 

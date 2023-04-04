@@ -42,5 +42,20 @@ return inertia("NiveauScolaire/IndexNiveauScolaire", ["niveauScolaires" => $nive
         return redirect()->back();
     }
 
+
+    public function show($id)
+    {
+       /* $niveau = $this->niveau->findOrFail($id);
+        return view('niveau.show', compact('niveau'));
+        */
+    }
+
+    public function edit(NiveauScolaire $niveauScolaire)
+    {
+        return response()->json(["niveauScolaire" => $niveauScolaire]);
+    }
+
+
+
   
 }

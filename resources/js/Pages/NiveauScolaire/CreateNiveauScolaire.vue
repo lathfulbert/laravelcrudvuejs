@@ -69,7 +69,8 @@
 import { onMounted, ref ,reactive } from 'vue';
 
 import { router } from '@inertiajs/vue3';
-import { useSwalSuccess, useSwalError } from '../../Composables/alert';
+//import { useSwalSuccess, useSwalError } from '../../Composables/alert';
+import { useSwalSuccess, useSwalError } from '@/Composables/alert';
 
 
 const nomNiveau = ref("");
@@ -121,7 +122,7 @@ const soumettre = ()=>{
        }
         
 
-       // useSwalError('Une erreur c\'est produite')
+        useSwalError('Une erreur c\'est produite')
     }
    }
    
