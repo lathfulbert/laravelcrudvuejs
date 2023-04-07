@@ -23,7 +23,7 @@ export default defineConfig({
             ziggy: path.resolve('vendor/tightenco/ziggy/dist/vue.es'),
            //'ziggy':'vendor/tightenco/ziggy/dist/vue',bug
 
-           "@": path.resolve(__dirname, "resources/js"),
+           //"@": path.resolve(__dirname, "resources/js"),
         },
     }
 });

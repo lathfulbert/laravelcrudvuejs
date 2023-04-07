@@ -12,10 +12,14 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //window.$ = window.jQuery = require("admin-lte/plugins/jquery/jquery") //require non reconnu
 //import "admin-lte/plugins/jquery/jquery"  //Vuejs Ne reconnait pas $ de Jquery
 
+
+/*
 import $ from 'jQuery' //import jQuery depuis nodeJS
 window.$ = $
+*/
 
-
+import $ from 'jquery';
+window.$ = $;
 
 import VueSweetalert2 from 'sweetalert2'
 window.Swal = VueSweetalert2

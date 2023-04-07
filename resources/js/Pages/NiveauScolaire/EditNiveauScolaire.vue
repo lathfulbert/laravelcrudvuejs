@@ -14,7 +14,7 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title">Modifier Niveau</h4>
+              <h4 class="modal-title">Modifier Niveau "{{ editNiveauScolaire.nom }}"</h4>
               <button type="button" @click="closeModal" class="close"  aria-label="Close">
                 <span aria-hidden="true">×</span>
               </button>
@@ -28,10 +28,10 @@
                 <div class="card-body">
                   <div class="form-group">
                     <label for="nom">nom</label>
-                    <input type="text" required v-model="nomNiveau" class="form-control" :class="{'is-invalid' : nomError != ''}" id="nom" placeholder="Entrer un titre">
+                    <input type="text" required v-model="editNiveauScolaire.nom" class="form-control" :class="{'is-invalid' : editNiveauScolaire.nomError != ''}" >
                   </div>
 
-                  <span v-if="nomError!=null"> {{ nomError }}</span>
+                  <span v-if="editNiveauScolaire.nomError!=null"> {{ editNiveauScolaire.nomError }}</span>
 
                   
                 </div>
@@ -61,11 +61,16 @@
 
 
 import axios from 'axios';
-//import { emit } from 'process';
+
+import { router } from '@inertiajs/vue3';
+
+import { useSwalSuccess, useSwalError } from '../../Composables/alert';
 
 import { reactive, watch } from 'vue';
 
 const emit = defineEmits(["modalClosed"])
+
+
 
 const props = defineProps({
 
@@ -87,8 +92,40 @@ const editNiveauScolaire = reactive({
 })
 
 
+const soumettre = ()=>{
+
+  router.put(
+    route("niveauscolaire.update",{niveauScolaire: props.niveauScolaireId} ),
+
+  {nom : editNiveauScolaire.nom },
+
+  {
+      onSuccess: (response)=>{
+
+        useSwalSuccess('Niveau Scolaire mis à jour avec succès')
+
+      },
+
+      onError: (error)=>{
+
+       editNiveauScolaire.nomError = error.nom
+       
+        useSwalError('Une erreur a été rencontrée')
+
+      }
+
+  }
+
+  
+  )
+
+}
+
+
 
 const openModal = ()=>{
+
+    getNiveauScolaireById()
 
     $("#editNiveauModal").modal("show")
 
@@ -98,6 +135,7 @@ const openModal = ()=>{
 const closeModal = ()=>{
 
     $("#editNiveauModal").modal("hide")
+
     emit("modalClosed")
 
 }
@@ -107,13 +145,19 @@ const closeModal = ()=>{
 
 
 const getNiveauScolaireById = ()=>{
-    axios.get(route("niveauscolaire.edit", { niveauScolaire: props.niveauScolaireId}))
+    
+  axios.get(route("niveauscolaire.edit", { niveauScolaire: props.niveauScolaireId}))
         .then((response)=>{
 
-            console.log("reponse:", response.data)
+            editNiveauScolaire.id = response.data.niveauScolaire.id
+
+            editNiveauScolaire.nom = response.data.niveauScolaire.nom
+
+          //  console.log("reponse:", response.data)
 
         }).catch((error)=>{
             console.log(error)
+         
 
         })
 }

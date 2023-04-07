@@ -26,3 +26,5 @@ Route::get('/niveauscolaire',[NiveauScolaireController::class,"index"])->name("n
 Route::get('/niveauscolaire/edit/{niveauScolaire}', [NiveauScolaireController::class, "edit"])->name("niveauscolaire.edit");
 
 Route::post('/niveauscolaire', [NiveauScolaireController::class, "store"])->name("niveauscolaire.store");
+
+Route::put('/niveauscolaire/{niveauScolaire}', [NiveauScolaireController::class, "update"])->name("niveauscolaire.update");

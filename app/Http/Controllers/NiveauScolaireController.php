@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\NiveauScolaire;
 use Illuminate\Http\Request;
+use App\Models\NiveauScolaire;
+use Illuminate\Validation\Rule;
 
 class NiveauScolaireController extends Controller
 {
@@ -53,6 +54,30 @@ return inertia("NiveauScolaire/IndexNiveauScolaire", ["niveauScolaires" => $nive
     public function edit(NiveauScolaire $niveauScolaire)
     {
         return response()->json(["niveauScolaire" => $niveauScolaire]);
+    }
+
+
+    public function update(Request $request , NiveauScolaire $niveauScolaire) //crée un nouvel utilisateur
+    {
+        //$this->niveau->create($request->all());
+
+        $request->validate([
+            "nom" => [
+                "required",
+                Rule::unique((new NiveauScolaire)->getTable(),"nom")->ignore($niveauScolaire->id)
+                ]
+        ]);
+
+
+        if($request->nom != $niveauScolaire->nom){
+
+             $niveauScolaire->nom = $request->nom;
+
+            $niveauScolaire->save();  
+
+        }
+
+        return redirect()->back();
     }
 
 

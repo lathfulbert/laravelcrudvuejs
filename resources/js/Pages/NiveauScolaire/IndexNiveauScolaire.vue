@@ -45,7 +45,7 @@
                  
                  
                     <tr v-for="niveauScolaire in props.niveauScolaires.data">
-                         <td>{{niveauScolaire.nom}}</td>
+                         <td>{{ niveauScolaire.nom }}</td>
                       <td>
                         <div class="d-flex"> 
                              <button @click="_$event=>openEditModal(niveauScolaire.id)" class="btn btn-info btn-sm me-3"><i class="fa fa-pencil-alt"></i></button>
